@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#171a12" />
+  <title>Golden Plains — A Lion's Life</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <canvas id="world" aria-label="Savanna game world"></canvas>
+    <div class="world-vignette"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Golden Plains home"><span class="brand-mark">✳</span><span>GOLDEN <b>PLAINS</b><small>A LION'S LIFE</small></span></a>
+      <div class="world-clock"><span class="live-dot"></span><span id="season-label">DRY SEASON · DAY 01</span><span class="clock-divider"></span><span id="time-label">06:42</span><span class="weather-icon">☀</span><span id="weather-label">CLEAR</span></div>
+      <div class="top-actions"><button class="icon-button" id="sound-toggle" title="Toggle sound">♫</button><button class="icon-button" id="save-button" title="Save game">↥</button><button class="icon-button" id="help-button" title="How to play">?</button></div>
+    </header>
+    <section class="identity-card glass">
+      <div class="avatar" id="avatar">♌</div><div class="identity-copy"><div class="eyebrow" id="identity-stage">YOUNG ADULT · LIONESS</div><h1 id="lion-name">Nala</h1><p><span id="pride-label">Mara Pride</span><i>·</i><span id="age-label">3 years, 2 months</span></p></div><button class="dots" id="profile-button" title="Lion profile">•••</button>
+      <div class="identity-rule"></div><div class="trait-line"><span>✦</span><span id="trait-label">Curious · Steady</span></div>
+    </section>
+    <section class="vitals glass" aria-label="Survival needs">
+      <div class="vitals-heading"><span>CONDITION</span><span class="condition-status"><i></i> WELL</span></div>
+      <div class="vital" data-stat="hunger"><div class="vital-name"><span>Hunger</span><b id="hunger-value">72%</b></div><div class="bar"><i id="hunger-bar"></i></div></div>
+      <div class="vital" data-stat="thirst"><div class="vital-name"><span>Thirst</span><b id="thirst-value">81%</b></div><div class="bar"><i id="thirst-bar"></i></div></div>
+      <div class="vital" data-stat="energy"><div class="vital-name"><span>Energy</span><b id="energy-value">86%</b></div><div class="bar"><i id="energy-bar"></i></div></div>
+      <div class="vital" data-stat="stamina"><div class="vital-name"><span>Stamina</span><b id="stamina-value">94%</b></div><div class="bar"><i id="stamina-bar"></i></div></div>
+      <div class="vital compact-vital"><span>HEALTH</span><b id="health-value">100%</b><div class="mini-bar"><i id="health-bar"></i></div><span class="vital-tag" id="injury-tag">NO INJURY</span></div>
+      <div class="vital compact-vital"><span>STRESS</span><b id="stress-value">12%</b><div class="mini-bar stress-bar"><i id="stress-bar"></i></div><span class="vital-tag">CALM</span></div>
+    </section>
+    <section class="location-pill glass"><span class="pin">⌖</span><div><b id="location-name">Acacia Rise</b><small id="location-note">Open grassland · 1.2 km to water</small></div><button id="map-button" title="Open map">▦</button></section>
+    <section class="world-event glass" id="event-card"><div class="event-icon">◉</div><div><span class="eyebrow">AROUND YOU</span><p id="event-text">A herd of zebra is grazing beyond the acacias.</p></div><button id="event-close" aria-label="Dismiss">×</button></section>
+    <aside class="right-rail">
+      <button class="rail-button active" data-panel="pride" title="Pride"><span>♧</span><small>PRIDE</small></button>
+      <button class="rail-button" data-panel="journal" title="Journal"><span>▤</span><small>JOURNAL</small></button>
+      <button class="rail-button" data-panel="family" title="Family tree"><span>⌘</span><small>FAMILY</small></button>
+      <button class="rail-button" data-panel="world" title="World"><span>⌖</span><small>WORLD</small></button>
+    </aside>
+    <section class="activity-panel glass" id="activity-panel"><div class="panel-title"><div><span class="eyebrow">YOUR PRIDE</span><h2 id="panel-heading">Mara Pride <span class="count-badge">6</span></h2></div><button class="panel-close" id="panel-close">×</button></div><div class="pride-members" id="pride-members"></div><div class="pride-footer"><span class="presence-dot"></span><span id="pride-status">All members accounted for</span></div></section>
+    <div class="toast" id="toast" role="status"></div>
+    <div class="action-hint" id="action-hint"></div>
+    <footer class="controls glass">
+      <div class="movement"><div class="control-label">MOVE</div><div class="keycap-row"><span class="keycap">W</span><span class="keycap">A</span><span class="keycap">S</span><span class="keycap">D</span><span class="key-note">or drag to look around</span></div><div class="move-modes"><button class="mode-button selected" data-mode="walk">WALK</button><button class="mode-button" data-mode="run">RUN</button><button class="mode-button" data-mode="sprint">SPRINT</button><button class="mode-button" data-mode="stalk">STALK</button></div></div>
+      <div class="control-divider"></div>
+      <div class="action-grid"><div class="control-label">ACTIONS</div><div class="action-buttons">
+        <button class="action-button" data-action="hunt"><span>⌁</span><small>HUNT <kbd>F</kbd></small></button><button class="action-button" data-action="drink"><span>◡</span><small>DRINK <kbd>E</kbd></small></button><button class="action-button" data-action="rest"><span>☾</span><small>REST <kbd>Z</kbd></small></button><button class="action-button" data-action="groom"><span>⌁</span><small>GROOM <kbd>G</kbd></small></button><button class="action-button" data-action="roar"><span>〰</span><small>ROAR <kbd>R</kbd></small></button><button class="action-button" data-action="call"><span>♧</span><small>CALL <kbd>C</kbd></small></button></div></div>
+      <div class="control-divider"></div><div class="interaction"><div class="control-label">NEARBY</div><button class="interact-button" id="interact-button"><span>◎</span><span><b id="interact-label">Explore the plains</b><small id="interact-sub">Walk close to an animal or landmark</small></span><kbd>SPACE</kbd></button></div>
+      <div class="mobile-pad"><button id="mobile-left">◀</button><button id="mobile-forward">▲</button><button id="mobile-back">▼</button><button id="mobile-right">▶</button></div>
+    </footer>
+    <div class="minimap glass"><canvas id="minimap" width="156" height="106"></canvas><span class="map-caption">MARA TERRITORY</span></div>
+    <div class="modal-backdrop" id="modal-backdrop"><div class="modal glass" id="modal"><button class="modal-x" id="modal-x">×</button><div id="modal-content"></div></div></div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
